@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <img src="./tobias_television.png" id="img-tele" style="display: none">
+    <canvas id="canvas" width="970" height="637">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function pad(n){return n<10 ? '0'+n : ''+n}
+    $( document ).ready(function() {
+      var c=document.getElementById("canvas");
+      var ctx=c.getContext("2d");
+      var img=document.getElementById("img-tele");
+      ctx.drawImage(img,0,0);
+
+      setInterval(function() {
+        var d = new Date();
+        var dstr = "" + pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds());
+        var x = c.width / 2;
+        var y = (c.height / 2) + 40;
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = 'white';
+        ctx.font="128px Gotham";
+        ctx.drawImage(img,0,0);
+        ctx.textAlign = 'center';
+        ctx.fillText(dstr, x, y);
+      }, 1000);
+    });
+    </script>
+  </body>
+</html>
+
