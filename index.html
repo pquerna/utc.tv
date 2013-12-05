@@ -26,6 +26,23 @@
       canvas.style.left = (viewportWidth - canvasWidth) / 2 + "px";
     }
 
+    function renderCanvas() {
+      var c = document.getElementById("canvas");
+      var img = document.getElementById("img-tele");
+      var d = new Date();
+      var dstr = "" + pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds());
+      var x = c.width / 2;
+      var y = (c.height / 2) + 40;
+      var ctx = c.getContext("2d");
+
+      ctx.fillStyle = 'white';
+      ctx.drawImage(img,0,0);
+      ctx.font="128px Gotham";
+      ctx.drawImage(img,0,0);
+      ctx.textAlign = 'center';
+      ctx.fillText(dstr, x, y);
+    }
+
     function pad(n){return n<10 ? '0'+n : ''+n}
     $( window ).resize(function() {
       resizeCanvas();
@@ -33,22 +50,9 @@
 
     $( document ).ready(function() {
       resizeCanvas();
-      var c=document.getElementById("canvas");
-      var ctx=c.getContext("2d");
-      var img=document.getElementById("img-tele");
-      ctx.drawImage(img,0,0);
-
+      renderCanvas();
       setInterval(function() {
-        var d = new Date();
-        var dstr = "" + pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds());
-        var x = c.width / 2;
-        var y = (c.height / 2) + 40;
-        var ctx = c.getContext("2d");
-        ctx.fillStyle = 'white';
-        ctx.font="128px Gotham";
-        ctx.drawImage(img,0,0);
-        ctx.textAlign = 'center';
-        ctx.fillText(dstr, x, y);
+        renderCanvas();
       }, 1000);
     });
     </script>
