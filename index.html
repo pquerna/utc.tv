@@ -12,8 +12,27 @@
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
+    function resizeCanvas() {
+      var canvas = document.getElementById('canvas');
+      var viewportWidth = window.innerWidth;
+      var viewportHeight = window.innerHeight;
+      var canvasWidth = 970;
+      var canvasHeight = 637;
+
+      canvas.style.position = "absolute";
+      canvas.setAttribute("width", canvasWidth);
+      canvas.setAttribute("height", canvasHeight);
+      canvas.style.top = (viewportHeight - canvasHeight) / 2 + "px";
+      canvas.style.left = (viewportWidth - canvasWidth) / 2 + "px";
+    }
+
     function pad(n){return n<10 ? '0'+n : ''+n}
+    $( window ).resize(function() {
+      resizeCanvas();
+    });
+
     $( document ).ready(function() {
+      resizeCanvas();
       var c=document.getElementById("canvas");
       var ctx=c.getContext("2d");
       var img=document.getElementById("img-tele");
